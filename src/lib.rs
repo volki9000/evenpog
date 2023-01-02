@@ -35,26 +35,26 @@ pub struct EvenPogParams {
     #[id = "slurrate"]
     pub slur_multiplier: FloatParam,
 
-    #[id = "shavevapor0x"]
-    pub shavevapor_x0: FloatParam,
-    #[id = "shavevapor1x"]
-    pub shavevapor_x1: FloatParam,
-    #[id = "shavevapor2x"]
-    pub shavevapor_x2: FloatParam,
-    #[id = "shavevapor3x"]
-    pub shavevapor_x3: FloatParam,
-    #[id = "shavevapor4x"]
-    pub shavevapor_x4: FloatParam,
-    #[id = "shavevapor5x"]
-    pub shavevapor_x5: FloatParam,
-    #[id = "shavevapor6x"]
-    pub shavevapor_x6: FloatParam,
-    #[id = "shavevapor7x"]
-    pub shavevapor_x7: FloatParam,
-    #[id = "shavevapor8x"]
-    pub shavevapor_x8: FloatParam,
-    #[id = "shavevapor9x"]
-    pub shavevapor_x9: FloatParam,
+    #[id = "shavevapor0y"]
+    pub shavevapor_y0: FloatParam,
+    #[id = "shavevapor1y"]
+    pub shavevapor_y1: FloatParam,
+    #[id = "shavevapor2y"]
+    pub shavevapor_y2: FloatParam,
+    #[id = "shavevapor3y"]
+    pub shavevapor_y3: FloatParam,
+    #[id = "shavevapor4y"]
+    pub shavevapor_y4: FloatParam,
+    #[id = "shavevapor5y"]
+    pub shavevapor_y5: FloatParam,
+    #[id = "shavevapor6y"]
+    pub shavevapor_y6: FloatParam,
+    #[id = "shavevapor7y"]
+    pub shavevapor_y7: FloatParam,
+    #[id = "shavevapor8y"]
+    pub shavevapor_y8: FloatParam,
+    #[id = "shavevapor9y"]
+    pub shavevapor_y9: FloatParam,
 
     #[id = "gain"]
     pub gain: FloatParam,
@@ -80,43 +80,43 @@ impl EvenPogParams {
                 max: 10.0f32
             }),
 
-            shavevapor_x0: FloatParam::new("ShaveVapor_0x", -1.0f32, FloatRange::Linear {
+            shavevapor_y0: FloatParam::new("ShaveVapor_0y", -1.0f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
-            shavevapor_x1: FloatParam::new("ShaveVapor_1x", -0.8f32, FloatRange::Linear {
+            shavevapor_y1: FloatParam::new("ShaveVapor_1y", -0.8f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
-            shavevapor_x2: FloatParam::new("ShaveVapor_2x", -0.6f32, FloatRange::Linear {
+            shavevapor_y2: FloatParam::new("ShaveVapor_2y", -0.6f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
-            shavevapor_x3: FloatParam::new("ShaveVapor_3x", -0.4f32, FloatRange::Linear {
+            shavevapor_y3: FloatParam::new("ShaveVapor_3y", -0.4f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
-            shavevapor_x4: FloatParam::new("ShaveVapor_4x", -0.2f32, FloatRange::Linear {
+            shavevapor_y4: FloatParam::new("ShaveVapor_4y", -0.2f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
-            shavevapor_x5: FloatParam::new("ShaveVapor_5x", 0.2f32, FloatRange::Linear {
+            shavevapor_y5: FloatParam::new("ShaveVapor_5y", 0.2f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
-            shavevapor_x6: FloatParam::new("ShaveVapor_6x", 0.4f32, FloatRange::Linear {
+            shavevapor_y6: FloatParam::new("ShaveVapor_6y", 0.4f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
-            shavevapor_x7: FloatParam::new("ShaveVapor_7x", 0.6f32, FloatRange::Linear {
+            shavevapor_y7: FloatParam::new("ShaveVapor_7y", 0.6f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
-            shavevapor_x8: FloatParam::new("ShaveVapor_8x", 0.8f32, FloatRange::Linear {
+            shavevapor_y8: FloatParam::new("ShaveVapor_8y", 0.8f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
-            shavevapor_x9: FloatParam::new("ShaveVapor_9x", 1.0f32, FloatRange::Linear {
+            shavevapor_y9: FloatParam::new("ShaveVapor_9y", 1.0f32, FloatRange::Linear {
                 min: -1.0f32,
                 max: 1.0f32
             }),
@@ -215,49 +215,19 @@ impl EvenPog {
         &mut self,
         sample: f32,
     ) -> f32 {
-        if sample > 0.1f32 {
-            if sample > 0.6f32 {
-                if sample > 0.8f32 {
-                    return sample * self.params.shavevapor_x9.value();
-                }
-                else {
-                    return sample * self.params.shavevapor_x8.value();
-                }
-            }
-            else if sample > 0.4f32 {
-                return sample * self.params.shavevapor_x7.value();
-            }
-            else {
-                if sample > -0.2f32 {
-                    return sample * self.params.shavevapor_x5.value();
-                }
-                else {
-                    return sample * self.params.shavevapor_x6.value();
-                }
-            }
+        match sample {
+            d if d < -0.8f32 => sample * self.params.shavevapor_y0.value(),
+            d if d < -0.8f32 && d > -0.6f32 => sample * self.params.shavevapor_y1.value(),
+            d if d < -0.6f32 && d > -0.4f32 => sample * self.params.shavevapor_y2.value(),
+            d if d < -0.4f32 && d > -0.2f32 => sample * self.params.shavevapor_y3.value(),
+            d if d < -0.2f32 && d > -0.1f32 => sample * self.params.shavevapor_y4.value(),
+            d if d > 0.1f32 && d < 0.2f32 => sample * self.params.shavevapor_y5.value(),
+            d if d > 0.2f32 && d < 0.4f32 => sample * self.params.shavevapor_y6.value(),
+            d if d > 0.4f32 && d < 0.6f32 => sample * self.params.shavevapor_y7.value(),
+            d if d > 0.6f32 && d < 0.8f32 => sample * self.params.shavevapor_y8.value(),
+            d if d > 0.8f32 => sample * self.params.shavevapor_y9.value(),
+            _ => sample
         }
-        else if sample < -0.1f32 {
-            if sample < -0.6f32 {
-                if sample < -0.8f32 {
-                    return sample * self.params.shavevapor_x0.value();
-                }
-                else {
-                    return sample * self.params.shavevapor_x1.value();
-                }
-            }
-            else if sample < -0.4f32 {
-                if sample < -0.2f32 {
-                    return sample * self.params.shavevapor_x4.value();
-                }
-                else {
-                    return sample * self.params.shavevapor_x3.value();
-                }
-            }
-            else {
-                return sample * self.params.shavevapor_x2.value();
-            }
-        }
-        return sample;
     }
 }
 
